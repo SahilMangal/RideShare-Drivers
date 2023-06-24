@@ -1,19 +1,93 @@
 import 'package:flutter/material.dart';
 import 'package:rideshare_driver/authentication/car_info_screen.dart';
 import 'package:rideshare_driver/authentication/login_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rideshare_driver/widgets/progress_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rideshare_driver/global/global.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class SignUpScreen extends StatefulWidget {
-
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
+
+  validateForm() {
+
+    //RegExp passwordRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+    RegExp passwordUpperCaseRegex = RegExp(r'^(?=.*[A-Z])');
+    RegExp passwordLowerCaseRegex = RegExp(r'^(?=.*[a-z])');
+    RegExp passwordDigitRegex = RegExp(r'^(?=.*?[0-9])');
+    RegExp passwordSpecialCharRegex = RegExp(r'^(?=.*?[!@#\$&*~])');
+
+    if(nameTextEditingController.text.length < 3) {
+      Fluttertoast.showToast(msg: "Name must be at least 3 Characters.");
+    } else if(!emailTextEditingController.text.contains("@")) {
+      Fluttertoast.showToast(msg: "Email is not valid");
+    } else if(phoneTextEditingController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Phone number is required");
+    } else if(passwordTextEditingController.text.length < 8) {
+      Fluttertoast.showToast(msg: "Password must be at least 8 characters");
+    } else if (!passwordUpperCaseRegex.hasMatch(passwordTextEditingController.text)){
+      Fluttertoast.showToast(msg: "Password must contain one Upper Case");
+    } else if (!passwordLowerCaseRegex.hasMatch(passwordTextEditingController.text)){
+      Fluttertoast.showToast(msg: "Password must contain one Lower Case");
+    } else if (!passwordDigitRegex.hasMatch(passwordTextEditingController.text)){
+      Fluttertoast.showToast(msg: "Password must contain one Digit");
+    } else if (!passwordSpecialCharRegex.hasMatch(passwordTextEditingController.text)){
+      Fluttertoast.showToast(msg: "Password must contain one Special Character");
+    } else {
+      saveDriverInfoNow();
+    }
+  }
+
+  saveDriverInfoNow() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        //Progress Dialog
+        builder: (BuildContext c) {
+          return ProgressDialog(message: "Processing, Please wait...",);
+        }
+    );
+
+    final User? firebaseUser = (
+        await fAuth.createUserWithEmailAndPassword(
+            email: emailTextEditingController.text.trim(),
+            password: passwordTextEditingController.text.trim()
+        ).catchError((err){
+          Navigator.pop(context);
+          Fluttertoast.showToast(msg: "Error: " + err.toString());
+        })
+    ).user;
+
+    if(firebaseUser != null) {
+      Map driverMap = {
+        "id": firebaseUser.uid,
+        "name": nameTextEditingController.text.trim(),
+        "email": emailTextEditingController.text.trim(),
+        "phone": phoneTextEditingController.text.trim(),
+      };
+
+      DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers");
+      driversRef.child(firebaseUser.uid).set(driverMap);
+
+      currentFirebaseUser = firebaseUser;
+      Fluttertoast.showToast(msg: "Account has been Created...");
+      Navigator.push(context, MaterialPageRoute(builder: (c)=> CarInfoScreen()));
+
+
+    } else {
+      Navigator.pop(context);
+      Fluttertoast.showToast(msg: "Account has not been Created...");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +247,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (c)=> CarInfoScreen()));
+                    validateForm();
+                    //Navigator.push(context, MaterialPageRoute(builder: (c)=> CarInfoScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xFFff725e),

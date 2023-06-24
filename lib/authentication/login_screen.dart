@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rideshare_driver/authentication/signup_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rideshare_driver/global/global.dart';
+import 'package:rideshare_driver/splashScreen/splash_screen.dart';
+import 'package:rideshare_driver/widgets/progress_dialog.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -10,6 +16,58 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
+
+  //Check if Email and password is entered or not.
+  validateForm() {
+    if(!emailTextEditingController.text.contains("@")) {
+      Fluttertoast.showToast(msg: "Email is not valid");
+    } else if(passwordTextEditingController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Password is required");
+    } else {
+      loginDriverNow();
+    }
+  }
+
+  loginDriverNow() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext c) {
+          return ProgressDialog(message: "Please wait...",);
+        }
+    );
+
+    final User? firebaseUser = (
+        await fAuth.signInWithEmailAndPassword(
+            email: emailTextEditingController.text.trim(),
+            password: passwordTextEditingController.text.trim()
+        ).catchError((err){
+          Navigator.pop(context);
+          Fluttertoast.showToast(msg: "Error: " + err.toString());
+        })
+    ).user;
+
+    if(firebaseUser != null) {
+
+      DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers");
+      driversRef.child(firebaseUser.uid).once().then((driverKey){
+        final snap = driverKey.snapshot;
+        if(snap.value != null){
+          currentFirebaseUser = firebaseUser;
+          Fluttertoast.showToast(msg: "Login Successful.");
+          Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
+        } else {
+          Fluttertoast.showToast(msg: "No Record is present with this email.");
+          fAuth.signOut();
+          Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
+        }
+      });
+    } else {
+      Navigator.pop(context);
+      Fluttertoast.showToast(msg: "Error occurred during sign in.");
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 200,
                 child: ElevatedButton(
                   onPressed: () {
+                    validateForm();
                     //Navigator.push(context, MaterialPageRoute(builder: (c)=> CarInfoScreen()));
                   },
                   style: ElevatedButton.styleFrom(

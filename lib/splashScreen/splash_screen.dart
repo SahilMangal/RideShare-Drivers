@@ -1,23 +1,28 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-//import 'package:rideshare_driver/mainScreens/main_screen.dart';
-//import 'package:rideshare_driver/authentication/signup_screen.dart';
+import 'package:rideshare_driver/mainScreens/main_screen.dart';
 import 'package:rideshare_driver/authentication/login_screen.dart';
+import 'package:rideshare_driver/global/global.dart';
 
 class MySplashScreen extends StatefulWidget {
   const MySplashScreen({super.key});
-
   @override
   State<MySplashScreen> createState() => _MySplashScreenState();
 }
 
 class _MySplashScreenState extends State<MySplashScreen> {
-
   startTimer(){
     Timer(const Duration(seconds: 3), () async {
-      //Send user to main screen
-      Navigator.push(context, MaterialPageRoute(builder: (c)=> LoginScreen()));
+
+      //check if user already logged in or not
+      if(await fAuth.currentUser != null){
+        currentFirebaseUser = fAuth.currentUser;
+        //Send user to Main Screen page
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> MainScreen()));
+      } else {
+        //Send user to Login screen Page
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> LoginScreen()));
+      }
     }); //Timer
   }
 
