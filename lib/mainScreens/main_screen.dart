@@ -67,8 +67,8 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         ],
 
         unselectedItemColor: const Color(0xFFF9FBE7),
-        selectedItemColor: const Color(0xFFC0CA33),
-        backgroundColor: const Color(0xFF263238),
+        selectedItemColor: const Color(0xFFff725e), //0xFFC0CA33
+        backgroundColor: const Color(0xFF2D2727),
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: const TextStyle(fontSize: 14),
         showUnselectedLabels: true,
