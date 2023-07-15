@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:rideshare_driver/splashScreen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:rideshare_driver/infoHandler/app_info.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
-
 
   runApp(
     MyApp(
-      child: MaterialApp(
-        title: 'RideShare Drivers',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+      child: ChangeNotifierProvider(
+        create: (context) => AppInfo(),
+        child: MaterialApp(
+          title: 'RideShare Drivers',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: const MySplashScreen(),
+          debugShowCheckedModeBanner: false,
         ),
-        home: const MySplashScreen(),
-        debugShowCheckedModeBanner: false,
-      )
-    )
+      ),
+    ),
   );
 }
 
