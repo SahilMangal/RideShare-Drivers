@@ -232,9 +232,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
   readCurrentDriverInformation() async {
     currentFirebaseUser = fAuth.currentUser;
     PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
-    pushNotificationSystem.initializeCloudMessaging();
+    pushNotificationSystem.initializeCloudMessaging(context);
     pushNotificationSystem.generateAndGetToken();
-
   }
 
   @override

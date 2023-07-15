@@ -46,6 +46,7 @@ dependencies:
   flutter_polyline_points: ^1.0.0
   flutter_geofire: ^2.0.3
   firebase_messaging: ^14.6.4
+  assets_audio_player: ^3.0.6
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,10 @@ flutter:
     - images/logo3.png
     - images/logo4.png
     - images/logo5.png
+    - images/car_logo.png
+    - images/origin.png
+    - images/destination.png
+    - music/music_notification.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
