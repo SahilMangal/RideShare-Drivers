@@ -29,7 +29,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
     zoom: 14.4746,
   );
 
-  Position? driverCurrentPosition;
+
   var geoLocator = Geolocator();
   LocationPermission? _locationPermission;
 
