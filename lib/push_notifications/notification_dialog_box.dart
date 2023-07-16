@@ -3,6 +3,9 @@ import 'package:rideshare_driver/push_notifications/push_notification_system.dar
 import 'package:rideshare_driver/models/user_ride_request_information.dart';
 import 'package:rideshare_driver/global/global.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rideshare_driver/mainScreens/new_trip_screen.dart';
 
 class NotificationDialogBox extends StatefulWidget {
 
@@ -28,7 +31,15 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.black54,
+          color: Color(0xFF2D2727),
+          border: Border.all(color: Color(0xFFff725e), width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xFFff725e),
+              blurRadius: 4,
+              offset: Offset(2, 2), // Shadow position
+            ),
+          ],
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -56,8 +67,9 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
             const SizedBox(height: 12.0,),
 
             const Divider(
-              height: 3,
-              thickness: 3,
+              height: 1,
+              thickness: 1,
+              color: Color(0xFFff725e),
             ),
 
             // Addresses origin and Destination
@@ -122,8 +134,9 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
             ),
 
             const Divider(
-              height: 3,
-              thickness: 3,
+              height: 1,
+              thickness: 1,
+              color: Color(0xFFff725e),
             ),
 
             // Buttons Cancel and Accept
@@ -163,12 +176,10 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                     ),
                     onPressed: (){
                       // Accept the ride request
-
                       audioPlayer.pause();
                       audioPlayer.stop();
                       audioPlayer = AssetsAudioPlayer();
-
-                      Navigator.pop(context);
+                      acceptRideRequest(context);
                     },
                     child: Text(
                       "Accept".toUpperCase(),
@@ -186,4 +197,41 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
       ),
     );
   }
+
+  acceptRideRequest(BuildContext context) {
+
+    String getRideRequestId="";
+
+    FirebaseDatabase.instance.ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .child("newRideStatus").once().then((snap){
+
+          if(snap.snapshot.value != null){
+            getRideRequestId = snap.snapshot.value.toString();
+          } else {
+            Fluttertoast.showToast(msg: "This ride request do not exist");
+          }
+
+          if(getRideRequestId == widget.userRideRequestDetails!.rideRequestId) {
+
+            FirebaseDatabase.instance.ref()
+                .child("drivers")
+                .child(currentFirebaseUser!.uid)
+                .child("newRideStatus")
+                .set("accepted");
+
+            // Trip Started
+            // send the driver to new ride screen(tripScreen) to pick the user
+            Navigator.push(context, MaterialPageRoute(builder: (c)=> NewTripScreen(
+                userRideRequestDetails: widget.userRideRequestDetails,
+            )));
+
+          } else {
+            Fluttertoast.showToast(msg: "This ride request do not exist");
+          }
+
+    });
+  }
+
 }

@@ -58,6 +58,8 @@ class PushNotificationSystem {
             String userName = (snapData.snapshot.value! as Map)["userName"];
             String userPhone = (snapData.snapshot.value! as Map)["userPhone"];
 
+            String? rideRequestId = snapData.snapshot.key;
+
             UserRideRequestInformation userRideRequestDetails = UserRideRequestInformation();
             userRideRequestDetails.originLatlng = LatLng(originLat, originLng);
             userRideRequestDetails.originAddress = originAddress;
@@ -67,6 +69,8 @@ class PushNotificationSystem {
 
             userRideRequestDetails.userName = userName;
             userRideRequestDetails.userPhone = userPhone;
+
+            userRideRequestDetails.rideRequestId = rideRequestId;
             
             print("************ This is user ride request information ************");
             print(userRideRequestDetails.userName);
