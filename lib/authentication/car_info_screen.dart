@@ -64,6 +64,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,
+                    fontFamily: 'PTSerif',
                     fontWeight: FontWeight.bold
                 ),
               ),
@@ -75,6 +76,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 controller: carModelTextEditingController,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
+                  fontFamily: 'PTSerif',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Car Model",
@@ -104,6 +106,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 controller: carNumberTextEditingController,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
+                  fontFamily: 'PTSerif',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Car Number",
@@ -133,6 +136,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 controller: carColorTextEditingController,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
+                  fontFamily: 'PTSerif',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Car Color",
@@ -169,6 +173,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                   style: TextStyle(
                     fontSize: 14.0,
                     color: Color(0xFFff725e),
+                    fontFamily: 'PTSerif',
                   ),
                 ),
                 value: selectedCarType,
@@ -214,6 +219,8 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                     "Save Now",
                     style: TextStyle(
                       color: Color(0xFF1a2e35),
+                      fontFamily: 'PTSerif',
+                      fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),

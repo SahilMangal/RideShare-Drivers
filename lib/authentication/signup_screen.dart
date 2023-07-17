@@ -99,32 +99,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             children: [
 
-              const SizedBox(height: 10,),
-
               Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Image.asset("images/logo5.png"),
               ),
-
-              const SizedBox(height: 10,),
 
               //Register as a Driver
               const Text(
                 "Register as a Driver",
                 style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 25,
                     color: Colors.white,
+                    fontFamily: 'PTSerif',
                     fontWeight: FontWeight.bold
                 ),
               ),
-
-              const SizedBox(height: 20,),
 
               //Name Field
               TextField(
                 controller: nameTextEditingController,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
+                  fontFamily: 'PTSerif',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Name",
@@ -155,6 +151,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 keyboardType: TextInputType.emailAddress,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
+                  fontFamily: 'PTSerif',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Email",
@@ -185,6 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
+                  fontFamily: 'PTSerif',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Phone",
@@ -216,6 +214,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 obscureText: true,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
+                  fontFamily: 'PTSerif',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Password",
@@ -257,21 +256,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     "Create Account",
                     style: TextStyle(
                       color: Color(0xFF1a2e35),
+                      fontFamily: 'PTSerif',
+                      fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 20,),
+              const SizedBox(height: 5,),
 
               //Already have an account? Login here
               TextButton(
                 child: const Text(
                   "Already have an account? Login Here!",
                   style: TextStyle(
-                    color: Colors.white24,
+                    color: Colors.white38,
                     fontStyle: FontStyle.italic,
+                    fontFamily: 'PTSerif',
                   ),
                 ),
                 onPressed: (){

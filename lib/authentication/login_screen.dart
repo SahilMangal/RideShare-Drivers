@@ -87,14 +87,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Image.asset("images/logo5.png"),
               ),
 
-              const SizedBox(height: 10,),
+              const SizedBox(height: 3,),
 
               //Login as a Driver Name
               const Text(
                 "Login as a Driver",
                 style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 30,
                     color: Colors.white,
+                    fontFamily: 'PTSerif',
                     fontWeight: FontWeight.bold
                 ),
               ),
@@ -105,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 keyboardType: TextInputType.emailAddress,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
+                  fontFamily: 'PTSerif',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Email",
@@ -136,6 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 obscureText: true,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
+                  fontFamily: 'PTSerif',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Password",
@@ -177,6 +180,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Login Now",
                     style: TextStyle(
                       color: Color(0xFF1a2e35),
+                      fontFamily: 'PTSerif',
+                      fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),
@@ -190,8 +195,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: const Text(
                   "Don't have an account? Register Now!",
                   style: TextStyle(
-                    color: Colors.white24,
+                    color: Colors.white38,
                     fontStyle: FontStyle.italic,
+                    fontFamily: 'PTSerif',
                   ),
                 ),
                 onPressed: (){

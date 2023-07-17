@@ -176,7 +176,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
                       ? Text(
                         statusText,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 17,
+                          fontFamily: 'PTSerif',
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
