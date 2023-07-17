@@ -11,6 +11,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:rideshare_driver/push_notifications/push_notification_system.dart';
 import 'package:rideshare_driver/assistants/black_theme_google_map.dart';
+import 'package:rideshare_driver/models/driver_data.dart';
 
 class HomeTabPage extends StatefulWidget {
   const HomeTabPage({super.key});
@@ -67,6 +68,26 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
   readCurrentDriverInformation() async {
     currentFirebaseUser = fAuth.currentUser;
+
+    FirebaseDatabase.instance.ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .once().then((snap){
+
+          if(snap.snapshot.value != null) {
+            onlineDriverData.id = (snap.snapshot.value as Map)["id"];
+            onlineDriverData.name = (snap.snapshot.value as Map)["name"];
+            onlineDriverData.phone = (snap.snapshot.value as Map)["phone"];
+            onlineDriverData.email = (snap.snapshot.value as Map)["email"];
+
+            onlineDriverData.car_color = (snap.snapshot.value as Map)["car_details"]["car_color"];
+            onlineDriverData.car_model = (snap.snapshot.value as Map)["car_details"]["car_model"];
+            onlineDriverData.car_number = (snap.snapshot.value as Map)["car_details"]["car_number"];
+
+          }
+
+    });
+
     PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
     pushNotificationSystem.initializeCloudMessaging(context);
     pushNotificationSystem.generateAndGetToken();

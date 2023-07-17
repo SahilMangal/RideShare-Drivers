@@ -10,6 +10,7 @@ import 'package:rideshare_driver/global/global.dart';
 import 'package:rideshare_driver/models/user_model.dart';
 import 'package:rideshare_driver/models/direction_details_info.dart';
 import 'package:rideshare_driver/global/map_key.dart';
+import 'package:flutter_geofire/flutter_geofire.dart';
 
 class AssistantMethods{
 
@@ -67,6 +68,19 @@ class AssistantMethods{
     directionDetailsInfo.duration_value = responseDirectionsApi["routes"][0]["legs"][0]["duration"]["value"];
 
     return directionDetailsInfo;
+  }
+
+  static pauseLiveLocationUpdated() {
+    streamSubscriptionPosition!.pause();
+    Geofire.removeLocation(currentFirebaseUser!.uid);
+  }
+
+  static resumeLiveLocationUpdated() {
+    streamSubscriptionPosition!.resume();
+    Geofire.setLocation(currentFirebaseUser!.uid,
+        driverCurrentPosition!.latitude,
+        driverCurrentPosition!.longitude
+    );
   }
 
 }

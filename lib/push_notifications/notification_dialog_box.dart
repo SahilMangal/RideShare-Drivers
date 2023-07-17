@@ -6,6 +6,7 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rideshare_driver/mainScreens/new_trip_screen.dart';
+import 'package:rideshare_driver/assistants/assistant_methods.dart';
 
 class NotificationDialogBox extends StatefulWidget {
 
@@ -220,6 +221,8 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                 .child(currentFirebaseUser!.uid)
                 .child("newRideStatus")
                 .set("accepted");
+
+            AssistantMethods.pauseLiveLocationUpdated();
 
             // Trip Started
             // send the driver to new ride screen(tripScreen) to pick the user

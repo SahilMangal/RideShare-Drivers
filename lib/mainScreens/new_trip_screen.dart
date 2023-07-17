@@ -7,6 +7,8 @@ import 'package:rideshare_driver/global/global.dart';
 import 'package:rideshare_driver/widgets/progress_dialog.dart';
 import 'package:rideshare_driver/assistants/assistant_methods.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:geolocator/geolocator.dart';
 
 class NewTripScreen extends StatefulWidget {
 
@@ -39,6 +41,11 @@ class _NewTripScreenState extends State<NewTripScreen> {
   PolylinePoints polylinePoints = PolylinePoints();
 
   double mapPadding = 0;
+
+  BitmapDescriptor? iconAnimatedMarker;
+  var geoLocator = Geolocator();
+  Position? onlineDriverCurrentPosition;
+
 
   // Scenario 1. originLatLng = Driver Current Position, destinationLatLng = User Pickup Location
   // Scenario 2. originLatLng = User Pickup Location, destinationLatLng = dropoff location
@@ -142,9 +149,60 @@ class _NewTripScreenState extends State<NewTripScreen> {
 
   }
 
+  @override
+  void initState() {
+    super.initState();
+
+    saveAssignedDriverDetailsToUserRideRequest();
+  }
+
+  createDriverIconMarker() {
+    if(iconAnimatedMarker == null) {
+      ImageConfiguration imageConfiguration = createLocalImageConfiguration(context, size: const Size(2, 2));
+      BitmapDescriptor.fromAssetImage(imageConfiguration, "images/carLogo.png").then((value){
+        iconAnimatedMarker = value;
+      });
+    }
+  }
+
+  getDriversLocationUpdatesAtRealtime() {
+    streamSubscriptionDriverLivePosition = Geolocator.getPositionStream()
+        .listen((Position position) {
+
+      driverCurrentPosition = position;
+      onlineDriverCurrentPosition = position;
+
+      LatLng latLngLiveDriverPosition = LatLng(
+        onlineDriverCurrentPosition!.latitude,
+        onlineDriverCurrentPosition!.longitude,
+      );
+
+      Marker animatingMarker = Marker(
+        markerId: const MarkerId("AnimatedMarker"),
+        position: latLngLiveDriverPosition,
+        icon: iconAnimatedMarker!,
+        infoWindow: const InfoWindow(title: "This is your current position")
+      );
+
+      setState(() {
+        CameraPosition cameraPosition = CameraPosition(
+            target: latLngLiveDriverPosition,
+            zoom: 16
+        );
+        newTripGoogleMapController!.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+        setOfMarkers.removeWhere((element) => element.markerId.value == "AnimatedMarker");
+        setOfMarkers.add(animatingMarker);
+      });
+
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
+    createDriverIconMarker();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -177,7 +235,8 @@ class _NewTripScreenState extends State<NewTripScreen> {
 
               drawPolylineFromOriginToDestination(driverCurrentLatLng!, userPickupLatLng!);
 
-              
+              getDriversLocationUpdatesAtRealtime();
+
             },
           ),
 
@@ -346,4 +405,38 @@ class _NewTripScreenState extends State<NewTripScreen> {
       ),
     );
   }
+
+  saveAssignedDriverDetailsToUserRideRequest(){
+    DatabaseReference databaseReference = FirebaseDatabase.instance
+        .ref()
+        .child("All Ride Requests")
+        .child(widget.userRideRequestDetails!.rideRequestId!);
+
+    Map driverLocationDataMap = {
+      "latitude":driverCurrentPosition!.latitude.toString(),
+      "longitude":driverCurrentPosition!.longitude.toString()
+    };
+    databaseReference.child("driverLocation").set(driverLocationDataMap);
+
+    databaseReference.child("status").set("accepted");
+    databaseReference.child("driverId").set(onlineDriverData.id);
+    databaseReference.child("driverName").set(onlineDriverData.name);
+    databaseReference.child("driverPhone").set(onlineDriverData.phone);
+    databaseReference.child("car_details").set(onlineDriverData.car_color.toString() + onlineDriverData.car_model.toString());
+
+    saveRideRequestIdToDriverHistory();
+  }
+
+  saveRideRequestIdToDriverHistory() {
+    DatabaseReference tripsHistoryRef = FirebaseDatabase.instance
+        .ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .child("tripsHistory");
+
+    tripsHistoryRef.child(widget.userRideRequestDetails!.rideRequestId!).set(true);
+
+    
+  }
+
 }

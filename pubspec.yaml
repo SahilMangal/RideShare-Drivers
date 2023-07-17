@@ -77,6 +77,7 @@ flutter:
     - images/logo4.png
     - images/logo5.png
     - images/car_logo.png
+    - images/carLogo.png
     - images/origin.png
     - images/destination.png
     - music/music_notification.mp3
