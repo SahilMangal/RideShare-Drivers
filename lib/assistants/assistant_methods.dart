@@ -83,4 +83,23 @@ class AssistantMethods{
     );
   }
 
+  static double calculateFareAmountFromOriginToDestination(DirectionDetailsInfo directionDetailsInfo) {
+    double timeTravelFareAmountPerMinute = (directionDetailsInfo.duration_value! / 60) * 0.9;
+    double distanceTraveledFareAmountPerKilometer = (directionDetailsInfo.distance_value! / 1000) * 0.9;
+
+    double totalFareAmount = timeTravelFareAmountPerMinute + distanceTraveledFareAmountPerKilometer;
+
+    if(driverVehicleType == "bike"){
+      double resultFareAmount = (totalFareAmount.truncate()) / 2.0;
+      return resultFareAmount;
+    } else if (driverVehicleType == "Car"){
+      return totalFareAmount.truncate().toDouble();
+    } else if (driverVehicleType == "Car-XL"){
+      double resultFareAmount = (totalFareAmount.truncate()) * 2.0;
+      return resultFareAmount;
+    } else {
+      return totalFareAmount.truncate().toDouble();
+    }
+  }
+
 }

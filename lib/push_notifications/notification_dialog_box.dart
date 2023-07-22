@@ -208,6 +208,9 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
         .child(currentFirebaseUser!.uid)
         .child("newRideStatus").once().then((snap){
 
+          print("**** 1 newRideStatus ****");
+          print(snap.snapshot.value);
+
           if(snap.snapshot.value != null){
             getRideRequestId = snap.snapshot.value.toString();
           } else {
@@ -215,6 +218,12 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
           }
 
           if(getRideRequestId == widget.userRideRequestDetails!.rideRequestId) {
+
+            print("**** 2 newRideStatus ****");
+            print(getRideRequestId);
+
+            print("**** 3 newRideStatus ****");
+            print(widget.userRideRequestDetails!.rideRequestId);
 
             FirebaseDatabase.instance.ref()
                 .child("drivers")
@@ -231,6 +240,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
             )));
 
           } else {
+            print("**** 4 newRideStatus ****");
             Fluttertoast.showToast(msg: "This ride request do not exist");
           }
 
