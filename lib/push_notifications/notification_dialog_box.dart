@@ -7,6 +7,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rideshare_driver/mainScreens/new_trip_screen.dart';
 import 'package:rideshare_driver/assistants/assistant_methods.dart';
+import 'package:flutter/services.dart';
 
 class NotificationDialogBox extends StatefulWidget {
 
@@ -152,13 +153,39 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                       primary: Color(0xFFff725e),
                     ),
                     onPressed: (){
-                      // Cancel the ride request
-
                       audioPlayer.pause();
                       audioPlayer.stop();
                       audioPlayer = AssetsAudioPlayer();
 
-                      Navigator.pop(context);
+                      // Cancel the ride request
+                      FirebaseDatabase.instance
+                          .ref()
+                          .child("All Ride Requests")
+                          .child(widget.userRideRequestDetails!.rideRequestId!)
+                          .remove().then((value) {
+
+                            FirebaseDatabase.instance
+                                .ref()
+                                .child("drivers")
+                                .child(currentFirebaseUser!.uid)
+                                .child("newRideStatus")
+                                .set("idle");
+                      }).then((value) {
+                        FirebaseDatabase.instance
+                            .ref()
+                            .child("drivers")
+                            .child(currentFirebaseUser!.uid)
+                            .child("tripsHistory")
+                            .child(widget.userRideRequestDetails!.rideRequestId!)
+                            .remove();
+                      }).then((value) {
+                        Fluttertoast.showToast(msg: "Ride Request than been Cancelled");
+                      });
+
+                      Future.delayed(const Duration(milliseconds: 2000), (){
+                        SystemNavigator.pop();
+                      });
+
                     },
                     child: Text(
                       "Cancel".toUpperCase(),
