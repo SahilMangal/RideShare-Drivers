@@ -8,7 +8,6 @@ import 'package:rideshare_driver/models/driver_data.dart';
 
 final FirebaseAuth fAuth = FirebaseAuth.instance;
 User? currentFirebaseUser;
-UserModel? userModelCurrentInfo;
 StreamSubscription<Position>? streamSubscriptionPosition;
 StreamSubscription<Position>? streamSubscriptionDriverLivePosition;
 AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
