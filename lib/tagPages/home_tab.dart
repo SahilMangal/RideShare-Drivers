@@ -35,9 +35,6 @@ class _HomeTabPageState extends State<HomeTabPage> {
   LocationPermission? _locationPermission;
 
   //Color(0xFFff725e)
-  String statusText = "Now Offline";
-  Color buttonColor = Color(0xFFff725e);
-  bool isDriverActive = false;
 
 
   //Check if user current Location permission is allowed or not
@@ -63,6 +60,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
     String humanReadableAddress = await AssistantMethods.searchAddressForGeographicCoordinated(driverCurrentPosition!, context);
     print("\n***************\nAddress: " + humanReadableAddress);
+
+    AssistantMethods.readDriverRatings(context);
 
   }
 

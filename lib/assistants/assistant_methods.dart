@@ -154,4 +154,20 @@ class AssistantMethods{
     readTripsKeysForOnlineDriver(context);
     
   }
+
+  static void readDriverRatings(context){
+    FirebaseDatabase.instance.ref()
+        .child("drivers")
+        .child(fAuth.currentUser!.uid)
+        .child("ratings")
+        .once()
+        .then((snap) {
+      if(snap.snapshot.value != null) {
+        String driverRatings = snap.snapshot.value.toString();
+
+        Provider.of<AppInfo>(context, listen: false).updateDriverAverageRatings(driverRatings);
+      }
+    });
+  }
+
 }
