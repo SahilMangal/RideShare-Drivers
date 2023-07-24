@@ -28,7 +28,7 @@ class _InfoDesignUIWidgetState extends State<InfoDesignUIWidget> {
           widget.textInfo!,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontFamily: "PTSerif",
+            fontFamily: "Ubuntu",
             fontSize: 16,
             color: Colors.white,
           ),

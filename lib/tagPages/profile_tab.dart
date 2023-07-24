@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rideshare_driver/global/global.dart';
 import 'package:rideshare_driver/widgets/info_design_ui.dart';
+import 'package:rideshare_driver/splashScreen/splash_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProfileTabPage extends StatefulWidget {
 
@@ -26,17 +28,17 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
               onlineDriverData.name!,
               style: const TextStyle(
                 fontSize: 50,
-                fontFamily: "PTSerif",
+                fontFamily: "Ubuntu",
                 fontWeight: FontWeight.bold,
                 color: Color(0xFFff725e),
               ),
             ),
 
             Text(
-              titleStarsRating + " Driver",
+              titleStarsRating + " Driver" + "!!",
               style: const TextStyle(
                 fontSize: 18,
-                fontFamily: "PTSerif",
+                fontFamily: "Ubuntu",
                 fontWeight: FontWeight.bold,
                 color: Colors.white54,
               ),
@@ -67,7 +69,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
             ),
 
             InfoDesignUIWidget(
-              textInfo: onlineDriverData.car_color! + " " + onlineDriverData.car_model! + " :: " + onlineDriverData.car_number!,
+              textInfo: onlineDriverData.car_color! + " " + onlineDriverData.car_model! + " :: ( " + onlineDriverData.car_number! + " )",
               iconData: Icons.emoji_transportation,
             ),
 
@@ -82,8 +84,18 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                 ),
               ),
               onPressed: (){
+
+                // Logout User and display splash screen - Start
+                Fluttertoast.showToast(msg: "Logout Successful...");
                 fAuth.signOut();
-                SystemNavigator.pop();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (c)=> const MySplashScreen())
+                );
+                Future.delayed(Duration(seconds: 3), (){
+                  SystemNavigator.pop();
+                });
+                // Logout User and display splash screen - End
+
               },
               child: const Text(
                 "Logout",
@@ -91,7 +103,7 @@ class _ProfileTabPageState extends State<ProfileTabPage> {
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    fontFamily: "PTSerif"
+                    fontFamily: "Ubuntu"
                 ),
               ),
             ),

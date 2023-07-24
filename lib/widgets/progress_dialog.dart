@@ -34,6 +34,8 @@ class ProgressDialog extends StatelessWidget {
                 style: const TextStyle(
                   color: Color(0xFFff725e),
                   fontSize: 15.0,
+                  fontFamily: "Ubuntu",
+                  fontWeight: FontWeight.bold,
                 ),
               )
 

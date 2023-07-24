@@ -62,7 +62,8 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
-                color: Color(0xFFff725e)
+                color: Color(0xFFff725e),
+                fontFamily: "Ubuntu"
               ),
             ),
 
@@ -95,8 +96,9 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                           child: Text(
                             widget.userRideRequestDetails!.originAddress!,
                             style: const TextStyle(
-                              fontSize: 16,
-                                color: Color(0xFFff725e)
+                                fontSize: 16,
+                                color: Color(0xFFff725e),
+                                fontFamily: "Ubuntu"
                             ),
                           ),
                         ),
@@ -122,8 +124,9 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                           child: Text(
                             widget.userRideRequestDetails!.destinationAddress!,
                             style: const TextStyle(
-                              fontSize: 16,
-                                color: Color(0xFFff725e)
+                                fontSize: 16,
+                                color: Color(0xFFff725e),
+                                fontFamily: "Ubuntu"
                             ),
                           ),
                         ),
@@ -191,6 +194,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                       "Cancel".toUpperCase(),
                       style: TextStyle(
                         fontSize: 14.0,
+                        fontFamily: "Ubuntu"
                       ),
                     ),
                   ),
@@ -213,6 +217,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox> {
                       "Accept".toUpperCase(),
                       style: TextStyle(
                         fontSize: 14.0,
+                        fontFamily: "Ubuntu"
                       ),
                     ),
                   ),

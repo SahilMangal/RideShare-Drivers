@@ -48,7 +48,7 @@ class _FareAmountCollectionDialogState extends State<FareAmountCollectionDialog>
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
                   color: Color(0xFFff725e),
-                  fontFamily: "PTSerif"
+                  fontFamily: "Ubuntu"
               ),
             ),
 
@@ -68,7 +68,7 @@ class _FareAmountCollectionDialogState extends State<FareAmountCollectionDialog>
                   fontWeight: FontWeight.bold,
                   fontSize: 40,
                   color: Color(0xFFff725e),
-                  fontFamily: "PTSerif"
+                  fontFamily: "Ubuntu"
               ),
             ),
 
@@ -81,7 +81,7 @@ class _FareAmountCollectionDialogState extends State<FareAmountCollectionDialog>
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.grey,
-                    fontFamily: "PTSerif"
+                    fontFamily: "Ubuntu"
                 ),
               ),
             ),
@@ -108,7 +108,7 @@ class _FareAmountCollectionDialogState extends State<FareAmountCollectionDialog>
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontFamily: "PTSerif"
+                          fontFamily: "Ubuntu"
                       ),
                     ),
                     Icon(

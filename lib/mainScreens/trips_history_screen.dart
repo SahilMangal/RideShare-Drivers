@@ -19,9 +19,12 @@ class _TripsHistoryScreenState extends State<TripsHistoryScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF2D2727),
       appBar: AppBar(
-        backgroundColor: Colors.black54,
+        backgroundColor: Color(0xFFff725e),
         title: const Text(
-          "Trips History"
+          "Trips History",
+          style: TextStyle(
+            fontFamily: "Ubuntu",
+          ),
         ),
         leading: IconButton(
           icon: const Icon(Icons.close),

@@ -30,19 +30,20 @@ class _EarningsTabPageState extends State<EarningsTabPage> {
                     "Total Earnings",
                     style: TextStyle(
                         color: Colors.white,
-                        fontFamily: "PTSerif",
+                        fontFamily: "Ubuntu",
                         fontWeight: FontWeight.bold,
                         fontSize: 20
                     ),
                   ),
                   const SizedBox(height: 10,),
+
                   Text(
                     "\$ " + Provider.of<AppInfo>(context, listen: false).driverTotalEarnings,
                     style: const TextStyle(
                         color: Colors.white,
-                        fontFamily: "PTSerif",
+                        fontFamily: "Ubuntu",
                         fontWeight: FontWeight.bold,
-                        fontSize: 50
+                        fontSize: 55
                     ),
                   ),
                 ],
@@ -79,6 +80,7 @@ class _EarningsTabPageState extends State<EarningsTabPage> {
                     style: TextStyle(
                       color: Color(0xFFff725e),
                       fontWeight: FontWeight.bold,
+                      fontFamily: "Ubuntu",
                       fontSize: 16
                     ),
                   ),
@@ -91,7 +93,7 @@ class _EarningsTabPageState extends State<EarningsTabPage> {
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          fontFamily: "PTSerif",
+                          fontFamily: "Ubuntu",
                           color: Color(0xFFff725e),
                         ),
                       ),

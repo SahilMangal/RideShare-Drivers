@@ -40,8 +40,8 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                   child: Text(
                     "User: " + widget.tripsHistoryModel!.userName!,
                     style: const TextStyle(
-                      fontSize: 18,
-                      fontFamily: "PTSerif",
+                      fontSize: 17,
+                      fontFamily: "Ubuntu",
                       fontWeight: FontWeight.bold,
                       color: Colors.white70,
                     ),
@@ -54,9 +54,9 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                   "\$ " + widget.tripsHistoryModel!.fareAmount!,
                   style: const TextStyle(
                     fontSize: 20,
-                    fontFamily: "PTSerif",
+                    fontFamily: "Ubuntu",
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFff725e),
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -67,19 +67,14 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
             // User Phone
             Row(
               children: [
-                const Icon(
-                  Icons.phone_iphone,
-                  color: Color(0xFFff725e),
-                  size: 25,
-                ),
 
-                const SizedBox(width: 12,),
+                const SizedBox(width: 6,),
 
                 Text(
-                  widget.tripsHistoryModel!.userPhone!,
+                  "Phone: " + widget.tripsHistoryModel!.userPhone!,
                   style: const TextStyle(
-                    fontSize: 18,
-                    fontFamily: "PTSerif",
+                    fontSize: 17,
+                    fontFamily: "Ubuntu",
                     fontWeight: FontWeight.w600,
                     color: Color(0xFFff725e),
                   ),
@@ -87,12 +82,22 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
               ],
             ),
 
-            const SizedBox(height: 10,),
+            //Divider
+            const Center(
+              child: SizedBox(
+                height: 20,
+                width: 150,
+                child: Divider(
+                  color: Color(0xFFff725e),
+                  height: 3,
+                  thickness: 3,
+                ),
+              ),
+            ),
 
             // Icon and Pickup address
             Row(
               children: [
-
                 Image.asset(
                   "images/origin.png",
                   height: 30,
@@ -107,8 +112,8 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                       widget.tripsHistoryModel!.originAddress!,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                        fontSize: 18,
-                        fontFamily: "PTSerif",
+                        fontSize: 17,
+                        fontFamily: "Ubuntu",
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFff725e),
                       ),
@@ -139,8 +144,8 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                       widget.tripsHistoryModel!.destinationAddress!,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                        fontSize: 18,
-                        fontFamily: "PTSerif",
+                        fontSize: 17,
+                        fontFamily: "Ubuntu",
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFff725e),
                       ),
@@ -160,8 +165,8 @@ class _HistoryDesignUIWidgetState extends State<HistoryDesignUIWidget> {
                 Text(
                   formatDateAndTime(widget.tripsHistoryModel!.time!),
                   style: const TextStyle(
-                    fontSize: 16,
-                    fontFamily: "PTSerif",
+                    fontSize: 17,
+                    fontFamily: "Ubuntu",
                     fontWeight: FontWeight.bold,
                     color: Colors.grey,
                   ),

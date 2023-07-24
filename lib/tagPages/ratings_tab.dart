@@ -101,10 +101,10 @@ class _RatingsTagPageState extends State<RatingsTagPage> {
                 "Average Rating",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 25,
                     letterSpacing: 3,
                     color: Color(0xFFff725e),
-                    fontFamily: "PTSerif"
+                    fontFamily: "Ubuntu"
                 ),
               ),
 
@@ -132,10 +132,10 @@ class _RatingsTagPageState extends State<RatingsTagPage> {
               Text(
                 titleStarsRating,
                 style: const TextStyle(
-                    fontSize: 30,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey,
-                    fontFamily: "PTSerif"
+                    fontFamily: "Ubuntu"
                 ),
               ),
 

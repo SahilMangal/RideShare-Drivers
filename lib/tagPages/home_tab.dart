@@ -153,7 +153,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
                       setState(() {
                         statusText = "Now Online";
                         isDriverActive = true;
-                        buttonColor = Colors.transparent;
+                        buttonColor = Colors.black87;
                       });
                       // Display Toast
                       Fluttertoast.showToast(msg: "Your are Online Now!");
@@ -173,7 +173,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
                     primary: buttonColor,
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(26),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: statusText != "Now Online"
@@ -181,7 +181,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
                         statusText,
                         style: const TextStyle(
                           fontSize: 17,
-                          fontFamily: 'PTSerif',
+                          fontFamily: 'Ubuntu',
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),

@@ -110,7 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.white,
-                    fontFamily: 'PTSerif',
+                    fontFamily: 'Ubuntu',
                     fontWeight: FontWeight.bold
                 ),
               ),
@@ -120,7 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: nameTextEditingController,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
-                  fontFamily: 'PTSerif',
+                  fontFamily: 'Ubuntu',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Name",
@@ -135,10 +135,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
+                    fontFamily: "Ubuntu"
                   ),
                   labelStyle: TextStyle(
                     color: Color(0xFFff725e),
                     fontSize: 15,
+                    fontFamily: "Ubuntu"
                   ),
 
 
@@ -151,7 +153,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 keyboardType: TextInputType.emailAddress,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
-                  fontFamily: 'PTSerif',
+                  fontFamily: 'Ubuntu',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Email",
@@ -166,13 +168,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
+                    fontFamily: "Ubuntu"
                   ),
                   labelStyle: TextStyle(
                     color: Color(0xFFff725e),
                     fontSize: 15,
+                    fontFamily: "Ubuntu"
                   ),
-
-
                 ),
               ),
 
@@ -182,7 +184,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 keyboardType: TextInputType.phone,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
-                  fontFamily: 'PTSerif',
+                  fontFamily: 'Ubuntu',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Phone",
@@ -197,13 +199,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
+                    fontFamily: "Ubuntu"
                   ),
                   labelStyle: TextStyle(
                     color: Color(0xFFff725e),
                     fontSize: 15,
+                    fontFamily: "Ubuntu"
                   ),
-
-
                 ),
               ),
 
@@ -214,7 +216,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 obscureText: true,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
-                  fontFamily: 'PTSerif',
+                  fontFamily: 'Ubuntu',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Password",
@@ -229,13 +231,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintStyle: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
+                    fontFamily: "Ubuntu"
                   ),
                   labelStyle: TextStyle(
                     color: Color(0xFFff725e),
                     fontSize: 15,
+                    fontFamily: "Ubuntu"
                   ),
-
-
                 ),
               ),
 
@@ -256,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     "Create Account",
                     style: TextStyle(
                       color: Color(0xFF1a2e35),
-                      fontFamily: 'PTSerif',
+                      fontFamily: 'Ubuntu',
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
@@ -273,7 +275,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   style: TextStyle(
                     color: Colors.white38,
                     fontStyle: FontStyle.italic,
-                    fontFamily: 'PTSerif',
+                    fontFamily: 'Ubuntu',
                   ),
                 ),
                 onPressed: (){

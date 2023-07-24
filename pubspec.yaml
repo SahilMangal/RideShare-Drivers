@@ -120,3 +120,7 @@ flutter:
           style: normal
         - asset: fonts/PTSerif-Bold.ttf
           style: italic
+    - family: Ubuntu
+      fonts:
+        - asset: fonts/Ubuntu-Regular.ttf
+          style: normal

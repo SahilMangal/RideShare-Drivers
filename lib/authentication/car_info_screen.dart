@@ -64,7 +64,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,
-                    fontFamily: 'PTSerif',
+                    fontFamily: 'Ubuntu',
                     fontWeight: FontWeight.bold
                 ),
               ),
@@ -76,7 +76,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 controller: carModelTextEditingController,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
-                  fontFamily: 'PTSerif',
+                  fontFamily: 'Ubuntu',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Car Model",
@@ -91,10 +91,12 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                   hintStyle: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
+                    fontFamily: "Ubuntu"
                   ),
                   labelStyle: TextStyle(
                     color: Color(0xFFff725e),
                     fontSize: 15,
+                    fontFamily: "Ubuntu"
                   ),
 
 
@@ -106,7 +108,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 controller: carNumberTextEditingController,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
-                  fontFamily: 'PTSerif',
+                  fontFamily: 'Ubuntu',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Car Number",
@@ -121,10 +123,12 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                   hintStyle: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
+                    fontFamily: "Ubuntu"
                   ),
                   labelStyle: TextStyle(
                     color: Color(0xFFff725e),
                     fontSize: 15,
+                    fontFamily: "Ubuntu"
                   ),
 
 
@@ -136,7 +140,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                 controller: carColorTextEditingController,
                 style: const TextStyle(
                   color: Color(0xFFB0BEC5),
-                  fontFamily: 'PTSerif',
+                  fontFamily: 'Ubuntu',
                 ),
                 decoration: const InputDecoration(
                   labelText: "Car Color",
@@ -151,10 +155,12 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                   hintStyle: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
+                    fontFamily: "Ubuntu"
                   ),
                   labelStyle: TextStyle(
                     color: Color(0xFFff725e),
                     fontSize: 15,
+                    fontFamily: "Ubuntu"
                   ),
 
 
@@ -173,7 +179,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                   style: TextStyle(
                     fontSize: 14.0,
                     color: Color(0xFFff725e),
-                    fontFamily: 'PTSerif',
+                    fontFamily: 'Ubuntu',
                   ),
                 ),
                 value: selectedCarType,
@@ -187,7 +193,8 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                     child: Text(
                       car,
                       style: TextStyle(
-                        color: const Color(0xFFB0BEC5)
+                        color: const Color(0xFFB0BEC5),
+                        fontFamily: "Ubuntu"
                       ),
                     ),
                     value: car,
@@ -219,7 +226,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                     "Save Now",
                     style: TextStyle(
                       color: Color(0xFF1a2e35),
-                      fontFamily: 'PTSerif',
+                      fontFamily: 'Ubuntu',
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),

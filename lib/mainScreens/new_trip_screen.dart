@@ -332,6 +332,7 @@ class _NewTripScreenState extends State<NewTripScreen> {
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
+                        fontFamily: "Ubuntu"
                       ),
                     ),
 
@@ -354,6 +355,7 @@ class _NewTripScreenState extends State<NewTripScreen> {
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFFff725e),
+                            fontFamily: "Ubuntu"
                           ),
                         ),
 
@@ -387,7 +389,8 @@ class _NewTripScreenState extends State<NewTripScreen> {
                               widget.userRideRequestDetails!.originAddress!,
                               style: const TextStyle(
                                   fontSize: 16,
-                                  color: Color(0xFFff725e)
+                                  color: Color(0xFFff725e),
+                                  fontFamily: "Ubuntu"
                               ),
                             ),
                           ),
@@ -414,7 +417,8 @@ class _NewTripScreenState extends State<NewTripScreen> {
                               widget.userRideRequestDetails!.destinationAddress!,
                               style: const TextStyle(
                                   fontSize: 16,
-                                  color: Color(0xFFff725e)
+                                  color: Color(0xFFff725e),
+                                  fontFamily: "Ubuntu"
                               ),
                             ),
                           ),
@@ -497,6 +501,7 @@ class _NewTripScreenState extends State<NewTripScreen> {
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14.0,
+                          fontFamily: "Ubuntu",
                           fontWeight: FontWeight.bold,
                         ),
                       ),

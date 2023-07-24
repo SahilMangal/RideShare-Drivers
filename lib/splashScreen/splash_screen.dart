@@ -52,7 +52,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
                 style: TextStyle(
                   fontSize: 30,
                   color: Color(0xFFff725e),
-                  fontFamily: 'PTSerif',
+                  fontFamily: 'Ubuntu',
                   fontWeight: FontWeight.bold,
                 ),
               )
